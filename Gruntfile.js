@@ -1,7 +1,7 @@
 module.exports = function (grunt) {
 	require('grunt-dojo2').initConfig(grunt, {
 		copy: {
-			webpack: { src: 'src/webpack.config.prod.js', dest: 'dist/umd/webpack.config.prod.js' },
+			webpack: { expand: true, cwd: 'src/', src: '**/**.js', dest: 'dist/umd/' },
 			intern: { src: 'src/run.html', dest: 'dist/umd/run.html' }
 		}
 	});

@@ -22,10 +22,9 @@ export const initialBaseUrl: string = (function () {
 })();
 
 // Non-functional test suite(s) to run in each browser
-export const suites = [ 'dist/umd/unit/all' ];
+export const suites = [require.toAbsMid('./adapter!dist/tests/unit/all')];
 
-// Functional test suite(s) to run in each browser once non-functional tests are completed
-export const functionalSuites = [ 'dist/umd/functional/all' ];
+export const functionalSuites = [require.toAbsMid('./adapter!dist/tests/functional/all')];
 
 // A regular expression matching URLs to files that should not be included in code coverage analysis
 export const excludeInstrumentation = /(?:node_modules|bower_components|tests)[\/\\]/;
