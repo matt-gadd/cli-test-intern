@@ -2,14 +2,14 @@ const webpack = require('webpack');
 const RequirePlugin = require('umd-compat-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WebpackShellPlugin = require('webpack-shell-plugin');
 const path = require('path');
 const basePath = process.cwd();
 
 module.exports = {
 	entry: {
-		'tests/unit/all': path.join(basePath, 'tests/unit/all.ts'),
-		'tests/functional/all': path.join(basePath, 'tests/functional/all.ts'),
-		'main': path.join(basePath, 'src/main.ts')
+		'tests/unit/all': [path.join(basePath, 'tests/unit/all.ts')],
+		'tests/functional/all': [path.join(basePath, 'tests/functional/all.ts')]
 	},
 	devtool: 'source-map',
 	resolve: {
@@ -33,16 +33,8 @@ module.exports = {
 		]
 	},
 	plugins: [
-		new CopyWebpackPlugin([
-			{ context: 'src', from: '**/*', ignore: '*.ts' },
-		]),
 		new RequirePlugin(),
-		new webpack.optimize.DedupePlugin(),
-		new HtmlWebpackPlugin ({
-			inject: true,
-			chunks: ['main'],
-			template: 'src/index.html'
-		})
+		new WebpackShellPlugin({ onBuildEnd:['./node_modules/.bin/intern-client config=node_modules/dojo-cli-test-intern/intern'] })
 	],
 	output: {
 		path: path.resolve('./dist'),
