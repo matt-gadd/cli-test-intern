@@ -1,4 +1,4 @@
-# dojo-cli-build-webpack
+# dojo-cli-test-intern
 
 <!-- TODO: change and uncomment
 [![Build Status](https://travis-ci.org/dojo/<< package-name >>.svg?branch=master)](https://travis-ci.org/dojo/<< package-name >>)
