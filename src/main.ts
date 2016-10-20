@@ -1,5 +1,7 @@
 import { Command, Helper } from 'dojo-cli/interfaces';
 import { Argv } from 'yargs';
+import { join } from 'path';
+const execa: any = require('execa');
 
 interface TestArgs extends Argv {
 	unit: boolean;
@@ -22,7 +24,11 @@ const command: Command = {
 		return helper.yargs;
 	},
 	run(helper: Helper, args: TestArgs) {
-		return Promise.resolve();
+		const configArgs = ['config=' + join('node_modules/dojo-cli-test-intern', 'intern') ];
+		const client = args.functional ? 'intern-runner' : 'intern-client';
+		return execa(client, configArgs).then((result: any) => {
+			console.log(result.stdout);
+		});
 	}
 };
 export default command;

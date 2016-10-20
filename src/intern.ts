@@ -26,5 +26,7 @@ export const suites = [require.toAbsMid('./adapter!dist/tests/unit/all')];
 
 export const functionalSuites = [require.toAbsMid('./adapter!dist/tests/functional/all')];
 
+export const reporters = ['Runner'];
+
 // A regular expression matching URLs to files that should not be included in code coverage analysis
 export const excludeInstrumentation = /(?:node_modules|bower_components|tests)[\/\\]/;
